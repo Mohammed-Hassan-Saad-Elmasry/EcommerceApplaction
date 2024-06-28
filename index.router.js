@@ -10,7 +10,7 @@ import reviewsRouter from "./src/modules/reviews/review.router.js";
 // import subcategoryRouter from "./modules/subcategory/subcategory.router.js";
 import userRouter from "./src/modules/user/user.router.js";
 import cors from "cors";
-import { globalErrorHandling } from "./src/utils/errorhandling.js";
+import { globalErrorHandling , asyncHandler } from "./src/utils/errorhandling.js";
 const initApp = (app, express) => {
   app.use(cors()); // allow access from anyWare
   app.use(express.json());
@@ -32,6 +32,7 @@ const initApp = (app, express) => {
   app.all("*", (req, res, next) => {
     res.status(404).send("In-valid Routing Plz check url or method");
   });
+  app.use(asyncHandler)
   app.use(globalErrorHandling);
   connectDB();
 };
