@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import { nanoid, customAlphabet } from "nanoid";
 import sendemail from "../../../utils/email.js";
 import cloudinary from "../../../utils/cloudinary.js";
+
 export const signup = asyncHandler(async (req, res, next) => {
   const { userName, email, password } = req.body;
   const usercheck = await userModel.findOne({ email: email.toLowerCase() });

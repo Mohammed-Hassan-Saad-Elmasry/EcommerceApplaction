@@ -2,20 +2,18 @@
 
 
 
+
 export const asyncHandler = (fn) => {
     return (req, res, next) => {
-        fn(req, res, next).catch(err => {
-            return next(new Error(err, { cause: 500 }))
-        })
-    }
-}
+      fn(req, res, next).catch((error) => {
+        return res.json({ message: error.message, stack: error.stack });
+      });
+    };
+  };
 
-export const globalErrorHandling = (err, req, res, next) => {
-    if (err) {
-        if (process.env.MOOD == 'DEV') {
-            return res.status(err.cause || 500).json({ message: err.message, err, stack: err.stack })
-        } else {
-            return res.status(err.cause || 500).json({ message: err.message })
-        }
-    }
-}
+  export const handelerror = (error, req, res, next) => {
+    return res
+      .status(error.cause || 400)
+      .json({ ms: "g error", message: error.message });
+  };
+  
