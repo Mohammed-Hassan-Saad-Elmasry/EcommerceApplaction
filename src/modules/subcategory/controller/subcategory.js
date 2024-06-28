@@ -3,7 +3,7 @@ import slugify from "slugify";
 import categoryModel from "../../../../db/models/Category.model.js";
 import subcategoryModel from "../../../../db/models/Subcategory.model.js";
 import cloudinary from "../../../utils/cloudinary.js";
-import { asyncHandler } from "../../../utils/errorHandling.js";
+import { asyncHandler } from "../../../utils/errorhandling.js";
 
 export const getSubcategory = asyncHandler(async (req, res, next) => {
   const subcategory = await subcategoryModel.find().populate([
